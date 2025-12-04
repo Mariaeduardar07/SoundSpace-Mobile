@@ -8,8 +8,11 @@ import {
   SafeAreaView,
   StatusBar 
 } from "react-native";
+import { useRouter } from 'expo-router';
+import BottomNav from '../components/BottomNav';
 
 export default function Home() {
+  const router = useRouter();
   const categories = ["All", "New Release", "Trending", "Top"];
   
   const newReleases = [
@@ -99,7 +102,7 @@ export default function Home() {
         <View style={styles.gridContainer}>
           <View style={styles.gridHeader}>
             <Text style={styles.sectionTitle}>New Release</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push('/listagem')}>
               <Text style={styles.seeAllText}>See all</Text>
             </TouchableOpacity>
           </View>
@@ -121,20 +124,7 @@ export default function Home() {
       </ScrollView>
 
       {/* Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItemActive}>
-          <Text style={styles.navIconActive}>🏠</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>📚</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>➕</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>❤️</Text>
-        </TouchableOpacity>
-      </View>
+      <BottomNav />
     </SafeAreaView>
   );
 }
@@ -319,41 +309,6 @@ const styles = StyleSheet.create({
     marginLeft: 2,
   },
   bottomSpacer: {
-    height: 100,
-  },
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    backgroundColor: '#09090b',
-    borderTopWidth: 1,
-    borderTopColor: '#18181b',
-  },
-  navItemActive: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: '#bef264',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  navIconActive: {
-    fontSize: 20,
-  },
-  navItem: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  navIcon: {
-    fontSize: 20,
+    height: 140,
   },
 });
